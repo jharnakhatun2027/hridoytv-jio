@@ -1,39 +1,32 @@
 import requests
 
-API_URL = "https://sports.hridoytv.workers.dev"
+# আপনার Worker এর মাধ্যমে টেস্ট করার M3U এন্ডপয়েন্টগুলো
+ENDPOINTS = [
+    "https://sports.hridoytv.workers.dev/playlist.m3u",
+    "https://sports.hridoytv.workers.dev/m3u",
+    "https://sports.hridoytv.workers.dev/channels.m3u"
+]
 
-def fetch_and_generate():
+def fetch_and_save():
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "*/*"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
-    
-    try:
-        response = requests.get(API_URL, headers=headers, timeout=20)
-        response.raise_for_status()
-        content = response.text
 
-        # যদি Cloudflare HTML পেজ রিটার্ন করে
-        if "<!DOCTYPE html>" in content or "<html" in content:
-            print("Error: Cloudflare blocked the request with HTML page.")
-            return
-
-        lines = content.splitlines()
-        new_m3u = []
-        
-        for line in lines:
-            new_m3u.append(line)
-            # চ্যানেল লিংকের সাথে User-Agent হেডার যুক্ত করা
-            if line.startswith("#EXTINF"):
-                new_m3u.append('#EXTVLCOPT:http-user-agent="Mozilla/5.0"')
-
-        with open("playlist.m3u", "w", encoding="utf-8") as f:
-            f.write("\n".join(new_m3u))
+    for url in ENDPOINTS:
+        try:
+            print(f"Checking: {url}")
+            response = requests.get(url, headers=headers, timeout=15)
             
-        print("playlist.m3u updated with headers.")
+            # যদি উত্তর ২০০ হয় এবং এতে #EXTM3U লেখা থাকে
+            if response.status_code == 200 and "#EXTM3U" in response.text:
+                with open("playlist.m3u", "w", encoding="utf-8") as f:
+                    f.write(response.text)
+                print(f"Success! Playlist saved from {url}")
+                return
+        except Exception as e:
+            print(f"Error checking {url}: {e}")
 
-    except Exception as e:
-        print(f"Error: {e}")
+    print("Error: Could not fetch valid M3U from provided endpoints.")
 
 if __name__ == "__main__":
-    fetch_and_generate()
+    fetch_and_save()
