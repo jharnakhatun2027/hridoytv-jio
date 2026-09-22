@@ -11023,3 +11023,9 @@ https://sports.hridoytv.workers.dev/live/3604.m3u8
 #EXTHTTP:{"headers":{"Referer":"https://sports.hridoytv.workers.dev/","User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"}}
 #KODIPROP:inputstream.adaptive.stream_headers=Referer=https://sports.hridoytv.workers.dev/&User-Agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36
 https://sports.hridoytv.workers.dev/live/3605.m3u8
+#EXTINF:-1 tvg-id="3606" tvg-name="CNBC TV18 Catchup." tvg-logo="http://live.balajibroadband.com/jtvimage/CNBC_TV18_NW18.png" tvg-language="English" tvg-type="Business" group-title="Business", CNBC TV18 Catchup.
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36
+#EXTVLCOPT:http-referrer=https://sports.hridoytv.workers.dev/
+#EXTHTTP:{"headers":{"Referer":"https://sports.hridoytv.workers.dev/","User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36"}}
+#KODIPROP:inputstream.adaptive.stream_headers=Referer=https://sports.hridoytv.workers.dev/&User-Agent=Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Mobile Safari/537.36
+https://sports.hridoytv.workers.dev/live/3606.m3u8
